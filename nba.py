@@ -58,15 +58,19 @@ class NBAApp(rumps.App):
     def update_scores(self, _):
         #print('Updating scores...')
         scores = get_scores().split('\n')
+        scores = list(filter(lambda x: x != '', scores))
         self.menu.clear()
         for score in scores[:-1]:  # Ignore the last score for the menu.
             self.menu.add(rumps.MenuItem(score))
         quit_button = rumps.MenuItem("Quit App", callback=lambda _: rumps.quit_application())
         self.menu.add(quit_button)
-        if scores:  # Only update title if scores were fetched.
+        if len(scores)>2:  # Only update title if scores were fetched.
             scores = get_scores(abbr=True).split('\n')
             scores = list(filter(lambda x: x != '', scores))
             self.title = scores[-1]
+        else:
+            self.title = "No current games"
+            
 
 
 if __name__ == "__main__":
