@@ -26,11 +26,11 @@ def game_data(gameid, emoji=True, abbr=False):
     return out
 
 
-def get_scores(split="\n", emoji=True, abbr=False):
+def get_scores(split="\n", emoji=False, abbr=False):
     basketball_emoji = "🏀" if emoji else ""
     payload = ""
     board = scoreboard.ScoreBoard()
-    payload += f"{basketball_emoji} ScoreBoardDate: " + board.score_board_date + split
+    payload += f"{basketball_emoji} Scoreboard for " + board.score_board_date + split
     payload += "=" * 30 + split
 
     games = board.games.get_dict()
@@ -56,7 +56,7 @@ class NBAApp(rumps.App):
         pass  # This function does nothing, but is needed for the menu item to be clickable.
 
     def update_scores(self, _):
-        print('Updating scores...')
+        #print('Updating scores...')
         scores = get_scores().split('\n')
         self.menu.clear()
         for score in scores[:-1]:  # Ignore the last score for the menu.
@@ -71,4 +71,3 @@ class NBAApp(rumps.App):
 
 if __name__ == "__main__":
     NBAApp().run()
-
