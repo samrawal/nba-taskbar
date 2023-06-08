@@ -1,0 +1,12 @@
+* nba-taskbar
+View current NBA games' score in macOS taskbar.
+
+[[./assets/screenshot1.png]]
+
+** setup
+1) Clone this repo: =git@github.com:samrawal/nba-taskbar.git=
+2) Install requirements: =pip install nba-api rumps=
+3) Run application: =python nba.py=
+
+** notes
+The scores are updated every 30 seconds, and show the results of all games fetched via NBA.com.
